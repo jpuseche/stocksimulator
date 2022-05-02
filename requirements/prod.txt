@@ -1,0 +1,2 @@
+# Everything the dev needs in addition to the prod requirements
+Django==3.0.7
