@@ -45,3 +45,23 @@ def index(request):
         "netBoughtSoldValue": netBoughtSoldValueCurrency,
         "predictedAmount": predictedAmountCurrency,
         })
+
+def import_csv(request):
+    return render(request, 'import_csv.html', {
+
+        })
+
+def login(request):
+    return render(request, 'login.html', {
+
+        })        
+
+def register(request):
+    return render(request, 'register.html', {
+
+        })
+
+def forgot_password(request):
+    return render(request, 'forgot-password.html', {
+
+        })

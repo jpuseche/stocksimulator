@@ -1,0 +1,2 @@
+1. & "c:/Users/Juan Pablo Useche/OneDrive/Documentos/Semestre 10/pf/Project/stocksimulator/env/Scripts/Activate.ps1"  #corre esto pero con la ruta donde esta esto guardado en tu pc
+2. python manage.py runserver #corre esto de 2do
