@@ -45,7 +45,7 @@ def sell(portfolio, end_money, investment, transaction_cost, quantity, price):
     return soldStocks
 
 def netBoughtSoldValue(totalBought, totalSold):
-    netBoughtSoldValue = totalBought - totalSold
+    netBoughtSoldValue = totalSold - totalBought
     print(totalBought)
     print(totalSold)
     return netBoughtSoldValue

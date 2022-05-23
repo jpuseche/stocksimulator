@@ -20,8 +20,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
-    path('import-csv/', views.import_csv, name='import_csv'),
+    path('home/', views.home, name='home'),
+    path('', views.import_csv, name='import_csv'),
     path('login/', views.login, name='login'),
     path('register/', views.register, name='register'),
     path('forgot-password/', views.forgot_password, name='forgot_password')
