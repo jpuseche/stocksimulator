@@ -1,34 +1,59 @@
+from dataclasses import replace
 from statistics import quantiles
 from django.http import HttpResponse
 from django.template import loader
 from django.shortcuts import render
 from . import actions
 import json 
-
+import csv
+import string
 from stocksimulator.models import StockReport
+from .forms import CsvForm
 
 def home(request):
-    monthsList = ["01/04/2022", "04/04/2022", "05/04/2022"]
-    numberOfMonths = len(monthsList)
+    
+    monthsList = []
     amountList = []
     quantityList = []
     priceList = []
 
-    #get csv data here
-    amountList.append(35328565993)
-    amountList.append(14261061819)
-    amountList.append(23869850923)
-    quantityList.append(9923633)
-    quantityList.append(4047837)
-    quantityList.append(6643194)
-    priceList.append(3598)
-    priceList.append(3523)
-    priceList.append(3593)
+    #importa el csv
+    print("importando csv")
+    form=request.GET
+    print(form)
+    csv_file = form['CSVFile']
+    print(csv_file)
+    with open(csv_file) as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=';')
+        cont=0
+        for row in csv_reader:
+            if cont!=0 :
+              #print(row[3])
+                companyName = row[0]
+                #amountList
+                volumen=int(row[3].replace('.', '').replace(',00', ''))
+                amountList.append(volumen)
+                #monthsList
+                fecha=row[1][:10]
+                monthsList.append(fecha)
+                #quantityList
+                Cantidad=int(row[2].replace('.', '').replace(',00', ''))
+                quantityList.append(Cantidad)
+                #priceList
+                precio=row[6].replace('.', '')
+                precio=precio.replace(',', '.')
+                precio=float(precio)
+                priceList.append(precio)
+            cont=cont+1 
+    
     transaction_cost = 0.005
-
+    numberOfMonths=len(monthsList)
+    print("numberOfMonths: ",numberOfMonths)
+    print("monthsList: ",len(monthsList))
+    print("amountList: ",len(amountList))
+    print("quantityList: ",len(quantityList))
     portfolio = 0
     investment = []
-
     for i in range(numberOfMonths):
         boughtStocks, portfolio, investment = actions.buy(portfolio, amountList[i], investment, transaction_cost, quantityList[i]/2, priceList[i])
     for i in range(numberOfMonths):
@@ -43,10 +68,7 @@ def home(request):
     netBoughtSoldValueCurrency = "${:,.2f}". format(netBoughtSoldValue)
     predictedAmountCurrency = "${:,.2f}". format(predictedAmount)
 
-
-    companyName = "ecopetrol"
     return render(request, 'index.html', {
-        "companyName": companyName,
         "boughtStocks": boughtStocksCurrency,
         "soldStocks": soldStocksCurrency,
         "netBoughtSoldValue": netBoughtSoldValueCurrency,
@@ -57,8 +79,8 @@ def home(request):
         })
 
 def import_csv(request):
-    return render(request, 'import_csv.html', {
 
+    return render(request, 'import_csv.html', {
         })
 
 def login(request):

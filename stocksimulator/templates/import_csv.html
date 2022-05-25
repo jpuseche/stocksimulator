@@ -37,13 +37,13 @@
                         <!-- Dropdown - Messages -->
                         <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                             aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
+                            <form class="form-inline mr-auto w-100 navbar-search"  action="POST">
                                 <div class="input-group">
                                     <input type="text" class="form-control bg-light border-0 small"
                                         placeholder="Search for..." aria-label="Search"
                                         aria-describedby="basic-addon2">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
+                                        <button class="btn btn-primary" type="submit">
                                             <i class="fas fa-search fa-sm"></i>
                                         </button>
                                     </div>
@@ -171,11 +171,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group files d-flex flex-column align-items-center justify-content-center m-0">
-                                    <input type="file" class="form-control file-upload-input" name="CSVFile" accept=".csv" multiple="multiple">
+                                    <form action="home" >
+                                        <input type="file" class="form-control file-upload-input" name="CSVFile" accept=".csv" multiple="multiple" >
+                                        <button type="submit">confirmar</button>
+                                    </form>
                                     <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100">
                                         <img class="mb-3 col-2 mt-5" src="{% static 'theme/img/import-svgrepo-com.svg'%}" alt="...">
                                         <span class="text-dark-color mb-1 font-18">Arrastra tu Archivo Aqui o</span>
-                                        <button class="btn btn-primary px-4 file-upload-btn mt-3 mb-5" type="button">Selecciona un archivo CSV de tu computadora</button>
+                                        <button class="btn btn-primary px-4 file-upload-btn mt-3 mb-5" type="submit">Selecciona un archivo CSV de tu computadora</button>
                                     </div>
                                 </div>
                             </div>
