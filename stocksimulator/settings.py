@@ -27,7 +27,7 @@ PROJECT_DIR = os.path.join(BASE_DIR, "stocksimulator")
 SECRET_KEY = 'django-insecure-wp0&r+and%l+(j4o_yrk-9eyh78k@)kir%@dly*0h322av7&#%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
