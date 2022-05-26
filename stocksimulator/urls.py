@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,4 +29,4 @@ urlpatterns = [
     path('sold/', views.soldReport, name='soldReport'),
     path('register/', views.register, name='register'),
     path('forgot-password/', views.forgot_password, name='forgot_password')
-]
+] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
