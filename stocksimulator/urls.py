@@ -25,6 +25,7 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('', views.import_csv, name='import_csv'),
     path('login/', views.login, name='login'),
+    path('report/', views.reporte, name='reporte'),
     path('register/', views.register, name='register'),
     path('forgot-password/', views.forgot_password, name='forgot_password')
 ] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

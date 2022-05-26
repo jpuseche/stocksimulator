@@ -10,19 +10,46 @@ import string
 from stocksimulator.models import StockReport
 from .forms import CsvForm
 
+daysList = []
+amountList = []
+quantityList = []
+priceList = []
+companyName=''
+stocksBuyAndSell=[]
+boughtStocksCurrency=''
+boughtActions=[]
+
 def home(request):
     
-    monthsList = []
-    amountList = []
-    quantityList = []
-    priceList = []
-
+    # Se indica que las variables sean globales
+    global companyName
+    global daysList
+    global amountList
+    global quantityList
+    global priceList
+    global stocksBuyAndSell
+    global boughtStocksCurrency
+    global boughtActions
+    #borra los daots de boughtActions
+    boughtActions=[]
+    #borra los datos de stocksBuyAndSell
+    stocksBuyAndSell=[]
+    #borra los datos de boughtStocksCurrency
+    boughtStocksCurrency=''
+    #borra los datos de companyName
+    companyName=''
+    #borra los datos de los arrays
+    daysList=[]
+    amountList=[]
+    quantityList=[]
+    priceList=[]
+    print("boughtActions: ",boughtActions)
     #importa el csv
-    print("importando csv")
+    #print("importando csv")
     form=request.GET
-    print(form)
+    #print(form)
     csv_file = form['CSVFile']
-    print(csv_file)
+    #print(csv_file)
     with open(csv_file) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=';')
         cont=0
@@ -33,9 +60,9 @@ def home(request):
                 #amountList
                 volumen=int(row[3].replace('.', '').replace(',00', ''))
                 amountList.append(volumen)
-                #monthsList
+                #daysList
                 fecha=row[1][:10]
-                monthsList.append(fecha)
+                daysList.append(fecha)
                 #quantityList
                 Cantidad=int(row[2].replace('.', '').replace(',00', ''))
                 quantityList.append(Cantidad)
@@ -47,15 +74,17 @@ def home(request):
             cont=cont+1 
     
     transaction_cost = 0.005
-    numberOfMonths=len(monthsList)
-    print("numberOfMonths: ",numberOfMonths)
-    print("monthsList: ",len(monthsList))
-    print("amountList: ",len(amountList))
-    print("quantityList: ",len(quantityList))
+    numberOfMonths=len(daysList)
+
     portfolio = 0
     investment = []
+    #vacia boughtActions
+    
     for i in range(numberOfMonths):
-        boughtStocks, portfolio, investment = actions.buy(portfolio, amountList[i], investment, transaction_cost, quantityList[i]/2, priceList[i])
+        boughtStocks, portfolio, investment  = actions.buy(portfolio, amountList[i], investment, transaction_cost, quantityList[i]/2, priceList[i])
+        boughtActions.append(boughtStocks)
+
+    #print("boughtStocks= ",boughtStocks," portfolio= ", portfolio ," investment= ", investment)
     for i in range(numberOfMonths):
         soldStocks, portfolio, investment = actions.sell(portfolio, amountList[i], investment, transaction_cost, quantityList[i]/2, priceList[i])
     netBoughtSoldValue = actions.netBoughtSoldValue(boughtStocks, soldStocks)
@@ -67,15 +96,28 @@ def home(request):
     soldStocksCurrency = "${:,.2f}". format(soldStocks)
     netBoughtSoldValueCurrency = "${:,.2f}". format(netBoughtSoldValue)
     predictedAmountCurrency = "${:,.2f}". format(predictedAmount)
-
+    
+    
+    
     return render(request, 'index.html', {
+        "companyName": companyName,
         "boughtStocks": boughtStocksCurrency,
         "soldStocks": soldStocksCurrency,
         "netBoughtSoldValue": netBoughtSoldValueCurrency,
         "predictedAmount": predictedAmountCurrency,
         "amountList": json.dumps(amountList),
-        "monthsList": json.dumps(monthsList),
+        "monthsList": json.dumps(daysList),
         "stocksBuyAndSell": json.dumps(stocksBuyAndSell),
+        })
+
+def reporte(request):
+    AcionesVendidas=[]
+    for i in range(len(boughtActions)):
+        AcionesVendidas.append("${:,.2f}". format(boughtActions[i]))
+    return render(request, 'reporte.html', {
+        "companyName": companyName,
+        "Transacciones": AcionesVendidas,
+        "boughtStocks": boughtStocksCurrency,
         })
 
 def import_csv(request):
