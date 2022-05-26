@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Report{% endblock %}
+
+{% block content %}
+<h1>{{ companyName }}</h1>
+
+<table >
+    <tr>
+        <th>
+            Transacciones Realizadas
+        </th>
+    </tr>
+        {% for transaccion in Transacciones %}
+            <tr>
+                <td> {{ transaccion }} </td>
+            </tr>
+        {% endfor %}
+    
+</table>
+<p>{{boughtStocks}}</p>
+
+{% endblock %}
