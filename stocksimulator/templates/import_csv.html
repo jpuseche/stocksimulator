@@ -145,9 +145,6 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <div class="btn-inline float-right">
-                    <a class="btn btn-primary btn-lg mr-2 back-button" href="/home">Confirmar</a>
-                </div>
             
                 <div id="importStocks" class="container">
                     <div class="card p-4 file-card d-none">
@@ -173,7 +170,7 @@
                                 <div class="form-group files d-flex flex-column align-items-center justify-content-center m-0">
                                     <form action="home" >
                                         <input type="file" class="form-control file-upload-input" name="CSVFile" accept=".csv" multiple="multiple" >
-                                        <button type="submit">confirmar</button>
+                                        <button type="submit" class="ui button primary">Confirmar</button>
                                     </form>
                                     <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100">
                                         <img class="mb-3 col-2 mt-5" src="{% static 'theme/img/import-svgrepo-com.svg'%}" alt="...">
