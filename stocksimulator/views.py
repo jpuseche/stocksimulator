@@ -18,6 +18,10 @@ companyName=''
 stocksBuyAndSell=[]
 boughtStocksCurrency=''
 boughtActions=[]
+soldActions=[]
+boughtStocks=0
+soldStocks=0
+
 
 def home(request):
     
@@ -29,13 +33,21 @@ def home(request):
     global priceList
     global stocksBuyAndSell
     global boughtStocksCurrency
+    global soldStocksCurrency
     global boughtActions
+    global soldActions
+    global boughtStocks
+    global soldStocks
     #borra los daots de boughtActions
     boughtActions=[]
+    #borra los datos de soldActions
+    soldActions=[]
     #borra los datos de stocksBuyAndSell
     stocksBuyAndSell=[]
     #borra los datos de boughtStocksCurrency
     boughtStocksCurrency=''
+    #borra los datos de soldStocksCurrency
+    soldStocksCurrency=''
     #borra los datos de companyName
     companyName=''
     #borra los datos de los arrays
@@ -43,11 +55,11 @@ def home(request):
     amountList=[]
     quantityList=[]
     priceList=[]
-    print("boughtActions: ",boughtActions)
     #importa el csv
     #print("importando csv")
-    form=request.GET
-    #print(form)
+    #veifica si request.GET es valido
+    
+    form=request.GET        
     csv_file = form['CSVFile']
     #print(csv_file)
     with open(csv_file) as csv_file:
@@ -87,6 +99,7 @@ def home(request):
     #print("boughtStocks= ",boughtStocks," portfolio= ", portfolio ," investment= ", investment)
     for i in range(numberOfMonths):
         soldStocks, portfolio, investment = actions.sell(portfolio, amountList[i], investment, transaction_cost, quantityList[i]/2, priceList[i])
+        soldActions.append(soldStocks)
     netBoughtSoldValue = actions.netBoughtSoldValue(boughtStocks, soldStocks)
     predictedAmount = amountList[len(amountList)-1] + netBoughtSoldValue
 
@@ -114,11 +127,33 @@ def reporte(request):
     AcionesVendidas=[]
     for i in range(len(boughtActions)):
         AcionesVendidas.append("${:,.2f}". format(boughtActions[i]))
+    Descripcion="Estas fueron las acciones de la empresa "+companyName+" que fueron compradas al pasar del dia"
+    stocksBuyAndSell = [boughtStocks, soldStocks]
+    TipoDeTransaccion="Acciones Compradas"
     return render(request, 'reporte.html', {
         "companyName": companyName,
         "Transacciones": AcionesVendidas,
         "boughtStocks": boughtStocksCurrency,
+        "description": Descripcion,
+        "stocksBuyAndSell": json.dumps(stocksBuyAndSell),
+        "TransactionType": TipoDeTransaccion,
         })
+def soldReport(request):
+    AcionesVendidas=[]
+    Descripcion="Estas fueron las acciones de la empresa "+companyName+" que fueron vendidas al pasar del dia"
+    for i in range(len(soldActions)):
+        AcionesVendidas.append("${:,.2f}". format(soldActions[i]))
+    stocksBuyAndSell = [boughtStocks, soldStocks]
+    TipoDeTransaccion="Acciones Vendidas"
+    return render(request, 'reporte.html', {
+        "companyName": companyName,
+        "Transacciones": AcionesVendidas,
+        "boughtStocks": soldStocksCurrency,
+        "description": Descripcion,
+        "stocksBuyAndSell": json.dumps(stocksBuyAndSell),
+        "TransactionType": TipoDeTransaccion,
+        })
+
 
 def import_csv(request):
 

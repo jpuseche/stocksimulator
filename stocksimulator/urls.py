@@ -24,6 +24,7 @@ urlpatterns = [
     path('', views.import_csv, name='import_csv'),
     path('login/', views.login, name='login'),
     path('report/', views.reporte, name='reporte'),
+    path('sold/', views.soldReport, name='soldReport'),
     path('register/', views.register, name='register'),
     path('forgot-password/', views.forgot_password, name='forgot_password')
 ]
