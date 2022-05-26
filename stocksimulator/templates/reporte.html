@@ -180,7 +180,7 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <h1 class="h2 mb-0 text-gray-800">{{ companyName }}</h1>
+                <h1 class="h2 mb-0 text-gray-800">{{ companyName }} - {{TransactionType}} </h1>
                 <p class="mt-2 h5">{{description}}</p>
 
                 <div class="row">
@@ -192,18 +192,33 @@
                             </div>
                             <!-- Card Body -->
                             <div class="card-body ">
-                                <table class="ml-auto mr-auto">
-                                    {% for transaccion in Transacciones %}
-                                    <tr class=" ">
-                                        <td>
-                                            <p class=" mb-1 text-center">
-                                                {{ transaccion }}
-                                            </p>
-                                        </td>
-                                    </tr>
-                                    {% endfor %}
+                                <div class="row">
+                                    <table class="ml-auto mr-1">
+                                        {% for day in Days %}
+                                        <tr class=" ">
+                                                <td>
+                                                <p class=" mb-1 text-center h5">
+                                                    <strong>{{ day }}</strong>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+    
+                                    </table>
 
-                                </table>
+                                    <table class="ml-auto mr-auto">
+                                        {% for transaccion in Transacciones %}
+                                        <tr class=" ">
+                                                <td>
+                                                <p class=" mb-1 text-center h5 text-primary">
+                                                    <strong>{{ transaccion }}</strong> 
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+    
+                                    </table>
+                                </div>
 
                             </div>
                         </div>
@@ -215,7 +230,7 @@
                             </div>
                             <div class="card-body pt-2 pb-0 h-auto">
                                 <p class="">Al finalizar el dia este fue el valor que dejaron las transacciones realizadas:
-                                    <strong>{{boughtStocks}}</strong></p>
+                                    <strong class=" text-primary">{{boughtStocks}}</strong></p> a fecha de cierre del <strong>{{ClosingDay}}</strong>
                             </div>
                         </div>
                         <div class="card shadow mb-4 h-auto">

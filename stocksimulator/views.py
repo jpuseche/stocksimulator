@@ -17,11 +17,13 @@ priceList = []
 companyName=''
 stocksBuyAndSell=[]
 boughtStocksCurrency=''
+boughtStocksCurrency=''
 boughtActions=[]
 soldActions=[]
 boughtStocks=0
 soldStocks=0
-
+DiaDeCierre=''
+CSVFILE=''
 
 def home(request):
     
@@ -38,6 +40,10 @@ def home(request):
     global soldActions
     global boughtStocks
     global soldStocks
+    global DiaDeCierre
+    global CSVFILE
+    #Borra el dato de dia de cierre
+    DiaDeCierre=''
     #borra los daots de boughtActions
     boughtActions=[]
     #borra los datos de soldActions
@@ -59,8 +65,15 @@ def home(request):
     #print("importando csv")
     #veifica si request.GET es valido
     
-    form=request.GET        
-    csv_file = form['CSVFile']
+    form=request.GET     
+    try:
+        csv_file = form['CSVFile']
+        CSVFILE=''
+        CSVFILE=csv_file
+    except :
+        print("no se pudo importar el csv")
+        csv_file=CSVFILE
+    
     #print(csv_file)
     with open(csv_file) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=';')
@@ -110,7 +123,7 @@ def home(request):
     netBoughtSoldValueCurrency = "${:,.2f}". format(netBoughtSoldValue)
     predictedAmountCurrency = "${:,.2f}". format(predictedAmount)
     
-    
+    DiaDeCierre=daysList[len(daysList)-1]
     
     return render(request, 'index.html', {
         "companyName": companyName,
@@ -137,6 +150,8 @@ def reporte(request):
         "description": Descripcion,
         "stocksBuyAndSell": json.dumps(stocksBuyAndSell),
         "TransactionType": TipoDeTransaccion,
+        "Days":daysList,
+        "ClosingDay":DiaDeCierre
         })
 def soldReport(request):
     AcionesVendidas=[]
@@ -152,6 +167,8 @@ def soldReport(request):
         "description": Descripcion,
         "stocksBuyAndSell": json.dumps(stocksBuyAndSell),
         "TransactionType": TipoDeTransaccion,
+        "Days":daysList,
+        "ClosingDay":DiaDeCierre
         })
 
 
