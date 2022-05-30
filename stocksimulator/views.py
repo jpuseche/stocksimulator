@@ -88,7 +88,9 @@ def home(request):
                 if row[3]==",00":
                     amountList.append(0)
                 else:
-                    volumen=int(row[3].replace('.', '').replace(',00', ''))
+                    volumen=row[3].replace('.', '')
+                    volumen=volumen.replace(',', '.')
+                    volumen=float(volumen)
                     amountList.append(volumen)
                 #daysList
                 fecha=row[1][:10]
@@ -97,7 +99,9 @@ def home(request):
                 if row[2]==",00":
                     quantityList.append(0)
                 else:
-                    Cantidad=int(row[2].replace('.', '').replace(',00', ''))
+                    Cantidad=row[2].replace('.', '')
+                    Cantidad=Cantidad.replace(',', '.')
+                    Cantidad=float(Cantidad)
                     quantityList.append(Cantidad)
                 #priceList
                 if row[6]==",00":
