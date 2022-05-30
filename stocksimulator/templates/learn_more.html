@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Learn-More{% endblock %}
 
 {% block content %}
-<!-- Page Wrapper -->
 <div id="wrapper">
 
     <!-- Sidebar -->
@@ -182,241 +181,172 @@
             </nav>
             <!-- End of Topbar -->
 
-
-
-            
-            <!-- Main Content -->
-            <div id="content">
-
-                
-                
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">{{ companyName }}</h1>
-                        <a href="/import-csv" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Importar un archivo CSV</a>
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="{% if isTestCSV %}col-lg-6{% else %}col-lg-12{% endif %}">
-
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Proposito de la aplicación</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p> ¡Bienvenido a <strong>Stocksimulator</strong>! Stocksimulator es una aplicación para aprender como funciona la bolsa colombiana
-                                        y convertirte en un verdadero entendedor de el funcionamiento de las acciónes de la bolsa de nuestro País.
-                                        Si quieres convertirte en todo un accionista, estas mas que invitado a usar este maravilloso e intiutivo Software
-                                        creado para nuestros Usuarios.
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        {% if isTestCSV %}
-                            <div class="col-lg-6">
-
-                                <!-- Test CSV Info -->
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <h6 class="m-0 font-weight-bold text-primary">Archivo de Prueba</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="mb-0"> La Información en Pantalla proviene de un Archivo CSV precargado por defecto,
-                                            pero eres libre de importar tu propio Archivo CSV descargado desde la 
-                                            página de la bolsa de valors colombiana:</p>
-                                        <a href="https://www.bvc.com.co/pps/tibco/portalbvc/Home/Mercados/enlinea/acciones?action=dummy">https://www.bvc.com.co/pps/tibco/portalbvc/Home/Mercados/enlinea/acciones?action=dummy</a>
-                                        <br></br>
-                                    </div>
-                                </div>
-
-                            </div>
-                        {% endif %}
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-danger shadow h-100 py-2">
-                                <div class="card-body pb-0 pt-3">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1 pb-0">
-                                                Acciones Compradas</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ boughtStocks }}</div>
-                                            <a href="/report/" class="">
-                                                <p class="h6  text-right ml-5 mt-3 mb-1">Ver mas</p>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto mb-4">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body card-body pb-0 pt-3">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Acciones Vendidas</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ soldStocks }}</div>
-                                            <a href="/sold/" class="">
-                                                <p class="h6  text-right ml-5 mt-3 mb-1">Ver mas</p>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto mb-4">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300 "></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Compra y Venta neta</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ netBoughtSoldValue }} </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Nect Month Volume Card -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Volumen de mañana</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ predictedAmount }}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Ganancias</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Fuentes de Ingresos</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-danger"></i> Acciones Compradas
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Acciones Vendidas
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Content Row -->
-
-                
-
-                <!-- Content Row -->
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
                 <div class="row">
+                    <div class="col-6">
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0 ">
+                                        <button class="text-dark btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseOne" aria-expanded="false"
+                                            aria-controls="collapseOne">
+                                            ¿Que es la bolsa de valores?
+                                        </button>
+                                    </h5>
+                                </div>
 
-                    <!-- Content Column -->
-                    <div class="col-lg-6 mb-4">
-
-                        <!-- Illustrations -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Vista de la Compañia</h6>
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        La bolsa de valores es una organización que permite la compra y venta de
+                                        acciones, esto permite que personas particulares apoyen el crecimiento de una
+                                        empresa, esto se hace adquiriendo un pequeño porcentaje de esta misma,
+                                        con esto entiendase compra de acciones, ademas que tambien permite que estas
+                                        personas
+                                        que han apoyado a la empresa se beneficien realizando la venta de las acciones.
+                                        <br>
+                                        <br>
+                                        Si quieres conocer mas sobre la bolsa de valores, te invitamos a ver el
+                                        siguiente video:
+                                    </div>
+                                    <div class="ml-4">
+                                        <iframe width="560" height="315"
+                                            src=""
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                        src="{% static 'theme/img/undraw_posting_photo.svg'%}" alt="...">
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h5 class="mb-0">
+                                        <button class="text-dark btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseTwo" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                            Como conseguir tu propio csv de la bolsa de valores Colombiana
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        Nuestra aplicacion la puedes utilizar para predecir el valor de las acciones
+                                        de la empresa que tu desees, solo es necesario que ingreses un csv con los
+                                        ultimos movimientos de las acciones de la empresa que deseas predecir, este
+                                        archivo csv lo puedes conseguir en la misma pagina de la bolsa de valores
+                                        colombiana.
+                                        <br>
+                                        Si quieres conocer mas acerca de los acrhivos csv, te invitamos a leer nuestra
+                                        expliacion
+                                        en esta misma pagina.
+                                        <br>
+                                        <br>
+                                        Si quieres conocer como conseguir un csv de la empresa
+                                        que tu desees, te invitamos a ver el siguiente video:
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h5 class="mb-0">
+                                        <button class="text-dark btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseThree" aria-expanded="false"
+                                            aria-controls="collapseThree">
+                                            ¿Que es un archivo csv?
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        La manera en como nuestra aplicacion se encarga de manejar los datos es
+                                        a travez de un archivo csv, este archivo es un archivo de texto plano,
+                                        en el que los caracteres(infrmacio) estan separados por comas, de ahi su nombre
+                                        en
+                                        ingles, Comma Separated Values, este tipo de archivos se puede ver como un excel
+                                        y
+                                        tienen la particularidad de que pueden almacenar una gran cantidad de datos.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" id="headingFour">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseFour" aria-expanded="false"
+                                            aria-controls="collapseFour">
+                                            Tutorial 3
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                                        richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor
+                                        brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+                                        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda
+                                        shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson
+                                        cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+                                        Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt
+                                        you probably haven't heard of them accusamus labore sustainable VHS.
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-
-                    <div class="col-lg-6 mb-4">
-
-                        <!-- Approach -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Proposito de la aplicación</h6>
-                            </div>
+                    <div class="col-6">
+                        <div class="card">
                             <div class="card-body">
-                                <p> Stocksimulator es una aplicación para aprender como funciona la bolsa colombiana</p>
+                                <h4 class="card-title text-primary"><strong>Consideraciones de parte del equipo de stocksimulator</strong></h4>
+                                <h5 class="card-subtitle ml-1 mt-2 mb-2 text-info"><strong>Estar informado</strong></h5>
+                                <p class="card-text ml-3">Es muy importante el estar al tanto de como se mueve el
+                                    mercado de valores
+                                    dia a dia, antes de hacer una inversion, esto no son apuestas, se debe tener en
+                                    claro el historial de
+                                    la empresa y si puede ser o no rentable a futuro.
+                                </p>
+                                <h5 class="card-subtitle ml-1 mt-2 mb-2 text-info"><strong>Busca un corredor de bolsa de
+                                    confianza</strong></h5>
+                                <p class="card-text ml-3">La manera mas sencilla de realizar acciones en la bolsa de
+                                    valores, es a travez
+                                    de un corredor de bolsa, este se encargara de aconsejarte sobre el mercado de
+                                    valores, ademas de que
+                                    hara de intermediario entre el usuario y la bolsa de valores, es por esto que es
+                                    importante el encontrar uno
+                                    que este capacitado para esta labor, en el caso de la bolsa de valores colombiana
+                                    esta tiene un listado, con agencias
+                                    de inversiones, y una lista de corredores de bolsa de confianza, sugerimos que lea
+                                    el listado de corredores de bolsa
+                                    y escojas el que mejor se adapte a tu necesidad.
+                                </p>
+                                <h5 class="card-subtitle ml-1 mt-2 mb-2 text-info"><strong>Invertir es diferente a apostar</strong></h5>
+                                <p class="card-text ml-3">La bolsa de valores es vista por muchos como aquel sitio en el que 
+                                    ingreso dinero y magicamente se multiplica, esto no es asi, la bolsa de valores deberia 
+                                    verse mas como un ahorro a largo plazo, algo como lo que son los cdts, pero que te pueden 
+                                    traer mas beneficios o mas perdidas; por eso es muy importante que a la hora de invertir se 
+                                    haga a largo plazo, ademas de que las sumas que se inviertan no sean significativas para 
+                                    la economia personal, en caso de que haya perdidas no afecte de manera negativa la economia
+                                    del usuario.
+                                </p>
+                                <h5 class="card-subtitle ml-1 mt-2 mb-2 text-muted">Links que le pueden interesar:</h5>
+                                <a href="https://www.bvc.com.co/pps/tibco/portalbvc" class="card-link ml-3"
+                                    target="_blank">Bolsa de Valores Colombiana</a>
+                                <a href="https://www.bvc.com.co/pps/tibco/portalbvc/Home/Empresas/Ranking+por+Capitalizaci%C3%B3n+Burs%C3%A1til?action=dummy"
+                                    class="card-link ml-2" target="_blank">Principales empresas</a>
+                                <a href="https://www.bvc.com.co/pps/tibco/portalbvc/Home/Empresas/Ranking+por+Capitalizaci%C3%B3n+Burs%C3%A1til?action=dummy"
+                                    class="card-link ml-2" target="_blank">Corredores de bolsa</a>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
+
+
             <!-- /.container-fluid -->
 
         </div>
@@ -437,12 +367,6 @@
 
 </div>
 
-
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
@@ -466,4 +390,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

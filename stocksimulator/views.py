@@ -183,6 +183,10 @@ def soldReport(request):
         "ClosingDay":DiaDeCierre
         })
 
+def learn_more(request):
+    return render(request, 'learn_more.html',{
+        
+    })
 
 def import_csv(request):
 

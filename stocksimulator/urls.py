@@ -28,5 +28,6 @@ urlpatterns = [
     path('report/', views.reporte, name='reporte'),
     path('sold/', views.soldReport, name='soldReport'),
     path('register/', views.register, name='register'),
-    path('forgot-password/', views.forgot_password, name='forgot_password')
+    path('forgot-password/', views.forgot_password, name='forgot_password'),
+    path('learn_more/', views.learn_more, name='aprende')
 ] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
