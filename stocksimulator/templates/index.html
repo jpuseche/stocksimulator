@@ -182,92 +182,192 @@
             </nav>
             <!-- End of Topbar -->
 
-            <!-- Begin Page Content -->
-            <div class="container-fluid">
 
-                <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">{{ companyName }}</h1>
-                    <a href="/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                            class="fas fa-download fa-sm text-white-50"></i> Generar Nuevo Reporte</a>
-                </div>
 
-                <!-- Content Row -->
-                <div class="row">
+            
+            <!-- Main Content -->
+            <div id="content">
 
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-danger shadow h-100 py-2">
-                            <div class="card-body pb-0 pt-3">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1 pb-0">
-                                            Acciones Compradas</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ boughtStocks }}</div>
-                                        <a href="/report/" class="">
-                                            <p class="h6  text-right ml-5 mt-3 mb-1">Ver mas</p>
-                                        </a>
-                                    </div>
-                                    <div class="col-auto mb-4">
-                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                
+                
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">{{ companyName }}</h1>
+                        <a href="/import-csv" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Importar un archivo CSV</a>
                     </div>
 
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body card-body pb-0 pt-3">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            Acciones Vendidas</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ soldStocks }}</div>
-                                        <a href="/sold/" class="">
-                                            <p class="h6  text-right ml-5 mt-3 mb-1">Ver mas</p>
-                                        </a>
-                                    </div>
-                                    <div class="col-auto mb-4">
-                                        <i class="fas fa-dollar-sign fa-2x text-gray-300 "></i>
-                                    </div>
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="{% if isTestCSV %}col-lg-6{% else %}col-lg-12{% endif %}">
+
+                            <!-- Approach -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Proposito de la aplicación</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p> Bienvenido a Stocksimulator! Stocksimulator es una aplicación para aprender como funciona la bolsa colombiana
+                                        y convertirte en un verdadero entendedor de el funcionamiento de las acciónes de la bolsa de nuestro País.
+                                        Si quieres convertirte en todo un accionista, estas mas que invitado a usar este maravilloso e intiutivo Software
+                                        creado para nuestros Usuarios.
+                                    </p>
                                 </div>
                             </div>
+
                         </div>
+
+                        {% if isTestCSV %}
+                            <div class="col-lg-6">
+
+                                <!-- Test CSV Info -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Archivo de Prueba</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <p> La Información en Pantalla proviene de un Archivo CSV precargado por defecto,
+                                            pero eres libre de importar tu propio Archivo CSV descargado desde la 
+                                            página de la bolsa de valors colombiana:</p>
+                                        <a href="https://www.bvc.com.co/pps/tibco/portalbvc/Home/Mercados/enlinea/acciones?action=dummy">https://www.bvc.com.co/pps/tibco/portalbvc/Home/Mercados/enlinea/acciones?action=dummy</a>
+                                        <br></br>
+                                    </div>
+                                </div>
+
+                            </div>
+                        {% endif %}
                     </div>
 
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Compra y Venta neta</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ netBoughtSoldValue }}
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body pb-0 pt-3">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1 pb-0">
+                                                Acciones Compradas</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ boughtStocks }}</div>
+                                            <a href="/report/" class="">
+                                                <p class="h6  text-right ml-5 mt-3 mb-1">Ver mas</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-auto mb-4">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body card-body pb-0 pt-3">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Acciones Vendidas</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ soldStocks }}</div>
+                                            <a href="/sold/" class="">
+                                                <p class="h6  text-right ml-5 mt-3 mb-1">Ver mas</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-auto mb-4">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300 "></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Compra y Venta neta</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ netBoughtSoldValue }} </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nect Month Volume Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Volumen de mañana</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ predictedAmount }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <!-- Nect Month Volume Card -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                            Volumen de mañana</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ predictedAmount }}</div>
+                    <!-- Content Row -->
+
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Ganancias</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
                                     </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pie Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Fuentes de Ingresos</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <canvas id="myPieChart"></canvas>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-danger"></i> Acciones Compradas
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Acciones Vendidas
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -278,48 +378,7 @@
 
                 <!-- Content Row -->
 
-                <div class="row">
-
-                    <!-- Area Chart -->
-                    <div class="col-xl-8 col-lg-7">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Ganancias</h6>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="chart-area">
-                                    <canvas id="myAreaChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pie Chart -->
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Fuentes de Ingresos</h6>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="chart-pie pt-4 pb-2">
-                                    <canvas id="myPieChart"></canvas>
-                                </div>
-                                <div class="mt-4 text-center small">
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-danger"></i> Acciones Compradas
-                                    </span>
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-success"></i> Acciones Vendidas
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <!-- Content Row -->
                 <div class="row">
