@@ -23,7 +23,7 @@ soldActions=[]
 boughtStocks=0
 soldStocks=0
 DiaDeCierre=''
-CSVFILE=''
+CSVFILE='TestCSV-ecopetrol.csv'
 
 def home(request):
     
@@ -64,13 +64,16 @@ def home(request):
     #importa el csv
     #print("importando csv")
     #veifica si request.GET es valido
-    
-    form=request.GET     
+
+    isTestCSV = True
+    form=request.GET 
     try:
         csv_file = form['CSVFile']
-        CSVFILE=''
-        CSVFILE=csv_file
-    except :
+        if (CSVFILE != 'TestCSV-ecopetrol.csv'):
+            CSVFILE=''
+            CSVFILE=csv_file
+            isTestCSV = False
+    except:
         print("no se pudo importar el csv")
         csv_file=CSVFILE
     
@@ -134,6 +137,7 @@ def home(request):
         "amountList": json.dumps(amountList),
         "monthsList": json.dumps(daysList),
         "stocksBuyAndSell": json.dumps(stocksBuyAndSell),
+        "isTestCSV": isTestCSV,
         })
 
 def reporte(request):
