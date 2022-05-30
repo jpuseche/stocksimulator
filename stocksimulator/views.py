@@ -6,11 +6,9 @@ from django.shortcuts import render
 from . import actions
 import json 
 import csv
-
+import string
 from stocksimulator.models import StockReport
 from .forms import CsvForm
-from .models import Csv
-
 
 daysList = []
 amountList = []
@@ -78,10 +76,9 @@ def home(request):
     except:
         print("no se pudo importar el csv")
         csv_file=CSVFILE
-    print(csv_file)
-    print(type(csv_file))
-    with open(csv_file, 'r') as csv_file:
-        print(type(csv_file))
+    
+    #print(csv_file)
+    with open(csv_file) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=';')
         cont=0
         for row in csv_reader:
