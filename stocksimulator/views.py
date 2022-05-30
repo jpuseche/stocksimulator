@@ -83,30 +83,38 @@ def home(request):
         cont=0
         for row in csv_reader:
             if cont!=0 :
-              #print(row[3])
                 companyName = row[0]
                 #amountList
-                volumen=int(row[3].replace('.', '').replace(',00', ''))
-                amountList.append(volumen)
+                if row[3]==",00":
+                    amountList.append(0)
+                else:
+                    volumen=int(row[3].replace('.', '').replace(',00', ''))
+                    amountList.append(volumen)
                 #daysList
                 fecha=row[1][:10]
                 daysList.append(fecha)
                 #quantityList
-                Cantidad=int(row[2].replace('.', '').replace(',00', ''))
-                quantityList.append(Cantidad)
+                if row[2]==",00":
+                    quantityList.append(0)
+                else:
+                    Cantidad=int(row[2].replace('.', '').replace(',00', ''))
+                    quantityList.append(Cantidad)
                 #priceList
-                precio=row[6].replace('.', '')
-                precio=precio.replace(',', '.')
-                precio=float(precio)
-                priceList.append(precio)
-            cont=cont+1 
-    
+                if row[6]==",00":
+                    priceList.append(0)
+                else:
+                    precio=row[6].replace('.', '')
+                    precio=precio.replace(',', '.')
+                    precio=float(precio)
+                    priceList.append(precio)
+            cont=cont+1
     transaction_cost = 0.005
     numberOfMonths=len(daysList)
 
     portfolio = 0
     investment = []
     #vacia boughtActions
+    
     
     for i in range(numberOfMonths):
         boughtStocks, portfolio, investment  = actions.buy(portfolio, amountList[i], investment, transaction_cost, quantityList[i]/2, priceList[i])
