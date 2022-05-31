@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Aprenda Mas{% endblock %}
+{% block title %}Learn-More{% endblock %}
 
 {% block content %}
 <div id="wrapper">
@@ -27,7 +27,7 @@
                 <span>Inicio</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="/learn-more">
+            <a class="nav-link" href="/learn_more">
                 <i class="fas fa-lightbulb"></i>
                 <span>¡Aprende mas!</span></a>
         </li>
@@ -192,6 +192,38 @@
                     <div class="col-6">
                         <div id="accordion">
                             <div class="card">
+                                <div class="card-header" id="headingFour">
+                                    <h5 class="mb-0">
+                                        <button class="text-dark btn btn-link collapsed" data-toggle="collapse"
+                                            data-target="#collapseFour" aria-expanded="false"
+                                            aria-controls="collapseFour">
+                                            ¿Como funciona <strong>Stocksimulator</strong>?
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseFour" class="collapse show" aria-labelledby="headingFour"
+                                    data-parent="#accordion">
+                                    <div class="card-body">
+                                        El funcionamiento de nuestra aplicacion esta pensado para ser una herramienta
+                                        que permita a los usuarios aprender como funciona la bolsa de valores
+                                        colombiana,
+                                        esto a travez de ciertos calculos que permitan predecir el valor de las acciones
+                                        de
+                                        la empresa que el usuario desee.
+                                        <br>
+                                        <br>
+                                        Si quieres conocer mas a fondo el funcionamiento
+                                        de nuestra aplicacion, te invitamos a ver el siguiente video:
+                                        <br>
+                                        <br>
+                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/dEah1HVeHRA"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
                                 <div class="card-header" id="headingOne">
                                     <h5 class="mb-0 ">
                                         <button class="text-dark btn btn-link collapsed" data-toggle="collapse"
@@ -202,27 +234,34 @@
                                     </h5>
                                 </div>
 
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                <div id="collapseOne" class="collapse " aria-labelledby="headingOne"
                                     data-parent="#accordion">
                                     <div class="card-body">
-                                        La bolsa de valores es una organización que permite la compra y venta de
-                                        acciones, esto permite que personas particulares apoyen el crecimiento de una
-                                        empresa, esto se hace adquiriendo un pequeño porcentaje de esta misma,
-                                        con esto entiendase compra de acciones, ademas que tambien permite que estas
-                                        personas
-                                        que han apoyado a la empresa se beneficien realizando la venta de las acciones.
-                                        <br>
-                                        <br>
-                                        Si quieres conocer mas sobre la bolsa de valores, te invitamos a ver el
-                                        siguiente video:
+                                        La bolsa de valores es un espacio en el que se realiza la compra y venta de
+                                        acciones de distintas empresas,
+                                        esto con el fin de apoyar a una empresa y a su vez conseguir cierto beneficio,
+                                        ahora bien ¿Como se logra esto?
+                                        esto se logra a partir de la compra de acciones, una accion es basicamente una
+                                        pequeña particion de la empresa,
+                                        es decir el que compra una accion es dueño de un porcentaje muy bajo de la
+                                        empresa, ahora bien ese porcentaje tiene
+                                        un valor, un valor que para la empresa puede ser pequeño, pero para inversores
+                                        minoritarios puede valer demasiado,
+                                        pero bueno, ¿Como las acciones pueden valer mas o valer menos que acciones de
+                                        otras empresas?, el valor de las acciones
+                                        depende de la oferta y la demanda, si muchas personas quieren comprar acciones
+                                        de una empresa, pues las acciones de estan
+                                        subiran, sin embargo si mucha gente desea vender acciones de la empresa, el
+                                        valor de estas acciones va a bajar, esta es
+                                        la razon por la que es muy importante conocer a fondo el historial de la
+                                        empresa, asi se puede intentar predecir si los
+                                        valores de las acciones de la empresa van a la alza o a la baja; si uno realiza
+                                        bien esta investigacion invertir
+                                        en la bolsa puede ser muy rentable, ya que sirve como una manera de ingreso
+                                        pasivo a largo plazo.
+
                                     </div>
-                                    <div class="ml-4">
-                                        <iframe width="560" height="315"
-                                            src=""
-                                            title="YouTube video player" frameborder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowfullscreen></iframe>
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="card">
@@ -244,13 +283,10 @@
                                         archivo csv lo puedes conseguir en la misma pagina de la bolsa de valores
                                         colombiana.
                                         <br>
+                                        <br>
                                         Si quieres conocer mas acerca de los acrhivos csv, te invitamos a leer nuestra
                                         expliacion
                                         en esta misma pagina.
-                                        <br>
-                                        <br>
-                                        Si quieres conocer como conseguir un csv de la empresa
-                                        que tu desees, te invitamos a ver el siguiente video:
                                     </div>
                                 </div>
                             </div>
@@ -277,30 +313,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-header" id="headingFour">
-                                    <h5 class="mb-0">
-                                        <button class="text-dark btn btn-link collapsed" data-toggle="collapse"
-                                            data-target="#collapseFour" aria-expanded="false"
-                                            aria-controls="collapseFour">
-                                            ¿Como funciona <strong>Stocksimulator</strong>?
-                                        </button>
-                                    </h5>
-                                </div>
-                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
-                                    data-parent="#accordion">
-                                    <div class="card-body">
-                                        El funcionamiento de nuestra aplicacion esta pensado para ser una herramienta 
-                                        que permita a los usuarios aprender como funciona la bolsa de valores colombiana,
-                                        esto a travez de ciertos calculos que permitan predecir el valor de las acciones de 
-                                        la empresa que el usuario desee.
-                                        <br>
-                                        <br>
-                                        Si quieres conocer mas a fondo el funcionamiento
-                                        de nuestra aplicacion, te invitamos a ver el siguiente video:
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="card">
                                 <div class="card-header" id="headingFive">
                                     <h5 class="mb-0">
@@ -316,9 +329,9 @@
                                     <div class="card-body">
                                         Las acciones de una empresa son titulos que representan el derecho
                                         de poseer una pequeña parte de la empresa, dependiendo la cantidad
-                                        de acciones que la persona posea podra tener mayor o menor participacion 
+                                        de acciones que la persona posea podra tener mayor o menor participacion
                                         en la empresa, por lo que el tener acciones de una empresa no solo dejara
-                                        beneficios cuando se vendan las acciones, sino que tambien permite 
+                                        beneficios cuando se vendan las acciones, sino que tambien permite
                                         obtener beneficios mientras se tiene posesion de las acciones.
                                     </div>
                                 </div>
@@ -337,12 +350,13 @@
                                     data-parent="#accordion">
                                     <div class="card-body">
                                         La diferencia entre trading y inversion es que trading es una forma de
-                                        comprar y vender acciones rapida y de bajo monto, mientras que inversion 
+                                        comprar y vender acciones rapida y de bajo monto, mientras que inversion
                                         es una forma de comprar y vender acciones a largo plazo, lo que trae ciertos
                                         beneficios dependiendo de la empresa, depende de tus necesidades te puede
-                                        funcionar un metodo u otro, sin embargo cabe resaltar que el trading puede 
+                                        funcionar un metodo u otro, sin embargo cabe resaltar que el trading puede
                                         generar mas perdidas que una inversion normal, y para evitar que esto suceda
-                                        se necesita aun mas conocimientos del historial de la empresa y un poco de suerte
+                                        se necesita aun mas conocimientos del historial de la empresa y un poco de
+                                        suerte
                                         para que sea una buena opcion.
                                     </div>
                                 </div>
@@ -353,7 +367,8 @@
                     <div class="col-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title text-primary"><strong>Consideraciones de parte del equipo de stocksimulator</strong></h4>
+                                <h4 class="card-title text-primary"><strong>Consideraciones de parte del equipo de
+                                        stocksimulator</strong></h4>
                                 <h5 class="card-subtitle ml-1 mt-2 mb-2 text-info"><strong>Estar informado</strong></h5>
                                 <p class="card-text ml-3">Es muy importante el estar al tanto de como se mueve el
                                     mercado de valores
@@ -362,7 +377,7 @@
                                     la empresa y si puede ser o no rentable a futuro.
                                 </p>
                                 <h5 class="card-subtitle ml-1 mt-2 mb-2 text-info"><strong>Busca un corredor de bolsa de
-                                    confianza</strong></h5>
+                                        confianza</strong></h5>
                                 <p class="card-text ml-3">La manera mas sencilla de realizar acciones en la bolsa de
                                     valores, es a travez
                                     de un corredor de bolsa, este se encargara de aconsejarte sobre el mercado de
@@ -375,13 +390,20 @@
                                     el listado de corredores de bolsa
                                     y escojas el que mejor se adapte a tu necesidad.
                                 </p>
-                                <h5 class="card-subtitle ml-1 mt-2 mb-2 text-info"><strong>Invertir es diferente a apostar</strong></h5>
-                                <p class="card-text ml-3">La bolsa de valores es vista por muchos como aquel sitio en el que 
-                                    ingreso dinero y magicamente se multiplica, esto no es asi, la bolsa de valores deberia 
-                                    verse mas como un ahorro a largo plazo, algo como lo que son los cdts, pero que te pueden 
-                                    traer mas beneficios o mas perdidas; por eso es muy importante que a la hora de invertir se 
-                                    haga a largo plazo, ademas de que las sumas que se inviertan no sean significativas para 
-                                    la economia personal, en caso de que haya perdidas no afecte de manera negativa la economia
+                                <h5 class="card-subtitle ml-1 mt-2 mb-2 text-info"><strong>Invertir es diferente a
+                                        apostar</strong></h5>
+                                <p class="card-text ml-3">La bolsa de valores es vista por muchos como aquel sitio en el
+                                    que
+                                    ingreso dinero y magicamente se multiplica, esto no es asi, la bolsa de valores
+                                    deberia
+                                    verse mas como un ahorro a largo plazo, algo como lo que son los cdts, pero que te
+                                    pueden
+                                    traer mas beneficios o mas perdidas; por eso es muy importante que a la hora de
+                                    invertir se
+                                    haga a largo plazo, ademas de que las sumas que se inviertan no sean significativas
+                                    para
+                                    la economia personal, en caso de que haya perdidas no afecte de manera negativa la
+                                    economia
                                     del usuario.
                                 </p>
                                 <h5 class="card-subtitle ml-1 mt-2 mb-2 text-muted">Links que le pueden interesar:</h5>
@@ -404,7 +426,7 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <footer class="sticky-footer bg-dark mt-4">
+        <footer class="sticky-footer bg-dark">
             <div class="container my-auto">
                 <div class="copyright text-center text-white my-auto">
                     <span>Copyright &copy; Stocksimulator 2022</span>

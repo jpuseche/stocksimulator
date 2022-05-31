@@ -75,7 +75,6 @@ def home(request):
         print("no se pudo importar el csv")
         csv_file=CSVFILE
     
-    #print(csv_file)
     with open(csv_file) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=';')
         cont=0
@@ -121,8 +120,6 @@ def home(request):
     for i in range(numberOfMonths):
         boughtStocks, portfolio, investment  = actions.buy(portfolio, amountList[i], investment, transaction_cost, quantityList[i]/2, priceList[i])
         boughtActions.append(boughtStocks)
-
-    #print("boughtStocks= ",boughtStocks," portfolio= ", portfolio ," investment= ", investment)
     for i in range(numberOfMonths):
         soldStocks, portfolio, investment = actions.sell(portfolio, amountList[i], investment, transaction_cost, quantityList[i]/2, priceList[i])
         soldActions.append(soldStocks)
