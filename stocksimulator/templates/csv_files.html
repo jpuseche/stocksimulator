@@ -1,0 +1,424 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Archivos CSV{% endblock %}
+
+{% block content %}
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-2">STOCKSIMULATOR</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Inicio</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/learn-more">
+                <i class="fas fa-lightbulb"></i>
+                <span>¡Aprende mas!</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/csv-files">
+                <i class="fas fa-solid fa-box"></i>
+                <span>Archivos CSV</span></a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+        <!-- Sidebar Message -->
+        <div class="sidebar-card d-none d-lg-flex">
+            <img class="sidebar-card-illustration mb-2" src="{% static 'theme/img/undraw_rocket.svg'%}" alt="...">
+            <p class="text-center mb-2"><strong>Stocksimulator Pro</strong> contiene muchas funcionalidades nuevas!</p>
+            <a class="btn btn-success btn-sm" href="#">Hazte Pro!</a>
+        </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <!-- Dropdown - Messages -->
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                            aria-labelledby="searchDropdown">
+                            <form class="form-inline mr-auto w-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small"
+                                        placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+
+                    <!-- Nav Item - Alerts -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bell fa-fw"></i>
+                            <!-- Counter - Alerts -->
+                            <span class="badge badge-danger badge-counter">1+</span>
+                        </a>
+                        <!-- Dropdown - Alerts -->
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="alertsDropdown">
+                            <h6 class="dropdown-header">
+                                Alertas
+                            </h6>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-primary">
+                                        <i class="fas fa-file-alt text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">Diciembre 12, 2019</div>
+                                    <span class="font-weight-bold">Un nuevo reporte mensual esta listo para ser
+                                        descargado!</span>
+                                </div>
+                            </a>
+                            <a class="dropdown-item text-center small text-gray-500" href="#">Leer mas Alertas</a>
+                        </div>
+                    </li>
+
+                    <!-- Nav Item - Messages -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-envelope fa-fw"></i>
+                            <!-- Counter - Messages -->
+                            <span class="badge badge-danger badge-counter">1</span>
+                        </a>
+                        <!-- Dropdown - Messages -->
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="messagesDropdown">
+                            <h6 class="dropdown-header">
+                                Mensajes
+                            </h6>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                        alt="...">
+                                    <div class="status-indicator bg-success"></div>
+                                </div>
+                                <div>
+                                    <div class="text-truncate">Toy sad. Compra acciones prro >:v</div>
+                                    <div class="small text-gray-500">El perro Pipe · 2 días</div>
+                                </div>
+                            </a>
+                            <a class="dropdown-item text-center small text-gray-500" href="#">Leer mas Mensajes</a>
+                        </div>
+                    </li>
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline small">Juan Useche</span>
+                            <i class="fas fa-solid fa-user"></i>
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Perfil
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Configuración
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Cerrar Sesión
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h2 class="h3 mb-0 text-gray-800">Seleccione el archivo de datos a usar</h2>
+                </div>
+                <div class="row mx-1">
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                            <div class="d-flex align-items-center py-2 ">
+                                <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                                <h5 class="pt-3">Ecopetrol</h5>
+                            </div>
+                            <div class="px-2 d-flex justify-content-center pb-3">
+                                <a class="btn btn-success px-4 file-upload-btn" href="/?CSVFile=ECOPETROL.csv">Usar</a>
+                            </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Etb</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-info px-4 file-upload-btn" href="/?CSVFile=ETB.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">People for Bikes Colombia</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-danger px-4 file-upload-btn" href="/?CSVFile=PFBCOLOMBIA.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Bancolombia</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-warning px-4 file-upload-btn" href="/?CSVFile=BCOLOMBIA.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Celsia</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-danger px-4 file-upload-btn" href="/?CSVFile=CELSIA.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Cemargos</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-success px-4 file-upload-btn" href="/?CSVFile=CEMARGOS.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Exito</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-warning px-4 file-upload-btn" href="/?CSVFile=EXITO.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Seguros Bolivar</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-success px-4 file-upload-btn" href="/?CSVFile=GRUBOLIVAR.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Grupo Aval</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-primary px-4 file-upload-btn" href="/?CSVFile=GRUPOAVAL.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Davivienda</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-danger px-4 file-upload-btn" href="/?CSVFile=PFDAVVNDA.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Promigas</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-success px-4 file-upload-btn" href="/?CSVFile=PROMIGAS.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Cnec</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-primary px-4 file-upload-btn" href="/?CSVFile=CNEC.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Conconcreto</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-success px-4 file-upload-btn" href="/?CSVFile=CONCONCRET.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">El Condor S.A.</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-info px-4 file-upload-btn" href="/?CSVFile=ELCONDOR.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Sura</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-primary px-4 file-upload-btn" href="/?CSVFile=GRUPOSURA.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Isa</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-info px-4 file-upload-btn" href="/?CSVFile=ISA.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Mineros</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-warning px-4 file-upload-btn" href="/?CSVFile=MINEROS.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Pazrio</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-danger px-4 file-upload-btn" href="/?CSVFile=PAZRIO.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Terpel</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-danger px-4 file-upload-btn" href="/?CSVFile=TERPEL.csv">Usar</a>
+                        </div>
+                    </div>
+                    <div class="card shadow py-1 px-5 mr-4 mb-4">
+                        <div class="d-flex align-items-center py-2 ">
+                            <i class="fas fa-solid fa-2x fa-file-csv mr-2"></i>
+                            <h5 class="pt-3">Villas</h5>
+                        </div>
+                        <div class="px-2 d-flex justify-content-center pb-3">
+                            <a class="btn btn-success px-4 file-upload-btn" href="/?CSVFile=VILLAS.csv">Usar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-dark">
+            <div class="container my-auto">
+                <div class="copyright text-center text-white my-auto">
+                    <span>Copyright &copy; Stocksimulator 2022</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Listo para irte?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Seleccione "Cerrar sesión" para abandonar la sesión actual.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" href="/login">Cerrar sesión</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

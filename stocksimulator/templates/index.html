@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Inicio{% endblock %}
 
 {% block content %}
 <!-- Page Wrapper -->
@@ -28,9 +28,14 @@
                 <span>Inicio</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="/learn_more">
+            <a class="nav-link" href="/learn-more">
                 <i class="fas fa-lightbulb"></i>
                 <span>¡Aprende mas!</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/csv-files">
+                <i class="fas fa-solid fa-box"></i>
+                <span>Archivos CSV</span></a>
         </li>
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -205,7 +210,7 @@
                     <div class="row">
 
                         <!-- Content Column -->
-                        <div class="{% if isTestCSV %}col-lg-6{% else %}col-lg-12{% endif %}">
+                        <div class="col-lg-6">
 
                             <!-- Approach -->
                             <div class="card shadow mb-4">
@@ -223,7 +228,6 @@
 
                         </div>
 
-                        {% if isTestCSV %}
                             <div class="col-lg-6">
 
                                 <!-- Test CSV Info -->
@@ -233,15 +237,15 @@
                                     </div>
                                     <div class="card-body">
                                         <p class="mb-0"> La Información en Pantalla proviene de un Archivo CSV precargado por defecto,
-                                            pero eres libre de importar tu propio Archivo CSV descargado desde la 
-                                            página de la bolsa de valors colombiana:</p>
-                                        <a href="https://www.bvc.com.co/pps/tibco/portalbvc/Home/Mercados/enlinea/acciones?action=dummy">https://www.bvc.com.co/pps/tibco/portalbvc/Home/Mercados/enlinea/acciones?action=dummy</a>
-                                        <br></br>
+                                            pero eres libre de usar algún otro de los archivos CSV disponibles por medio de nuestra pestaña
+                                            de archivos CSV:</p>
+                                        <br></br>    
+                                        <a href="/csv-files">Ver Archivos disponibles</a>
+                                        
                                     </div>
                                 </div>
 
                             </div>
-                        {% endif %}
                     </div>
 
                     <!-- Content Row -->
@@ -375,47 +379,6 @@
                     </div>
 
                 </div>
-
-                <!-- Content Row -->
-
-                
-
-                <!-- Content Row -->
-                <div class="row">
-
-                    <!-- Content Column -->
-                    <div class="col-lg-6 mb-4">
-
-                        <!-- Illustrations -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Vista de la Compañia</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                        src="{% static 'theme/img/undraw_posting_photo.svg'%}" alt="...">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-6 mb-4">
-
-                        <!-- Approach -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Proposito de la aplicación</h6>
-                            </div>
-                            <div class="card-body">
-                                <p> Stocksimulator es una aplicación para aprender como funciona la bolsa colombiana</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
             </div>
             <!-- /.container-fluid -->
 
@@ -436,8 +399,6 @@
     <!-- End of Content Wrapper -->
 
 </div>
-
-
 
 </div>
 <!-- End of Page Wrapper -->

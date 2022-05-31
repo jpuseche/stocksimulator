@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Learn-More{% endblock %}
+{% block title %}Aprenda Mas{% endblock %}
 
 {% block content %}
 <div id="wrapper">
@@ -27,9 +27,14 @@
                 <span>Inicio</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="/learn_more">
+            <a class="nav-link" href="/learn-more">
                 <i class="fas fa-lightbulb"></i>
                 <span>¡Aprende mas!</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/csv-files">
+                <i class="fas fa-solid fa-box"></i>
+                <span>Archivos CSV</span></a>
         </li>
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -353,7 +358,7 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <footer class="sticky-footer bg-dark">
+        <footer class="sticky-footer bg-dark mt-4">
             <div class="container my-auto">
                 <div class="copyright text-center text-white my-auto">
                     <span>Copyright &copy; Stocksimulator 2022</span>

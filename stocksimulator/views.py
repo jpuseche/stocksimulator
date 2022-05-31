@@ -6,6 +6,7 @@ from django.shortcuts import render
 from . import actions
 import json 
 import csv
+import pandas as pd
 import string
 from stocksimulator.models import StockReport
 from .forms import CsvForm
@@ -23,7 +24,7 @@ soldActions=[]
 boughtStocks=0
 soldStocks=0
 DiaDeCierre=''
-CSVFILE='TestCSV-ecopetrol.csv'
+CSVFILE='csv-files/ECOPETROL.csv'
 
 def home(request):
     
@@ -65,14 +66,12 @@ def home(request):
     #print("importando csv")
     #veifica si request.GET es valido
 
-    isTestCSV = True
-    form=request.GET 
+    form=request.GET
     try:
-        csv_file = form['CSVFile']
-        if (CSVFILE != 'TestCSV-ecopetrol.csv'):
+        csv_file = "csv-files/"+form['CSVFile']
+        if (CSVFILE != 'csv-files/ECOPETROL.csv'):
             CSVFILE=''
             CSVFILE=csv_file
-            isTestCSV = False
     except:
         print("no se pudo importar el csv")
         csv_file=CSVFILE
@@ -149,7 +148,6 @@ def home(request):
         "amountList": json.dumps(amountList),
         "monthsList": json.dumps(daysList),
         "stocksBuyAndSell": json.dumps(stocksBuyAndSell),
-        "isTestCSV": isTestCSV,
         })
 
 def reporte(request):
@@ -185,6 +183,11 @@ def soldReport(request):
         "TransactionType": TipoDeTransaccion,
         "Days":daysList,
         "ClosingDay":DiaDeCierre
+        })
+
+def csv_files(request):
+    return render(request, 'csv_files.html', {
+
         })
 
 def learn_more(request):
