@@ -6,7 +6,6 @@ from django.shortcuts import render
 from . import actions
 import json 
 import csv
-import pandas as pd
 import string
 from stocksimulator.models import StockReport
 from .forms import CsvForm
@@ -157,6 +156,7 @@ def reporte(request):
     Descripcion="Estas fueron las acciones de la empresa "+companyName+" que fueron compradas al pasar del dia"
     stocksBuyAndSell = [boughtStocks, soldStocks]
     TipoDeTransaccion="Acciones Compradas"
+    clase=False
     return render(request, 'reporte.html', {
         "companyName": companyName,
         "Transacciones": AcionesVendidas,
@@ -165,7 +165,8 @@ def reporte(request):
         "stocksBuyAndSell": json.dumps(stocksBuyAndSell),
         "TransactionType": TipoDeTransaccion,
         "Days":daysList,
-        "ClosingDay":DiaDeCierre
+        "ClosingDay":DiaDeCierre,
+        "clase":clase
         })
 def soldReport(request):
     AcionesVendidas=[]
@@ -174,6 +175,7 @@ def soldReport(request):
         AcionesVendidas.append("${:,.2f}". format(soldActions[i]))
     stocksBuyAndSell = [boughtStocks, soldStocks]
     TipoDeTransaccion="Acciones Vendidas"
+    clase=True
     return render(request, 'reporte.html', {
         "companyName": companyName,
         "Transacciones": AcionesVendidas,
@@ -182,7 +184,8 @@ def soldReport(request):
         "stocksBuyAndSell": json.dumps(stocksBuyAndSell),
         "TransactionType": TipoDeTransaccion,
         "Days":daysList,
-        "ClosingDay":DiaDeCierre
+        "ClosingDay":DiaDeCierre,
+        "clase":clase
         })
 
 def csv_files(request):
@@ -212,5 +215,9 @@ def register(request):
 
 def forgot_password(request):
     return render(request, 'forgot-password.html', {
+
+        })
+def pro(request):
+    return render(request, 'pro.html', {
 
         })

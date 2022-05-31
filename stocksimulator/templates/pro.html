@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Reporte{% endblock %}
+{% block title %}Report{% endblock %}
 
 {% block content %}
 <!-- Sidebar -->
@@ -28,14 +28,9 @@
                 <span>Inicio</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="/learn-more">
+            <a class="nav-link" href="/learn_more">
                 <i class="fas fa-lightbulb"></i>
                 <span>¡Aprende mas!</span></a>
-        </li>
-        <li class="nav-item active">
-            <a class="nav-link" href="/csv-files">
-                <i class="fas fa-solid fa-box"></i>
-                <span>Archivos CSV</span></a>
         </li>
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -49,7 +44,7 @@
         <div class="sidebar-card d-none d-lg-flex">
             <img class="sidebar-card-illustration mb-2" src="{% static 'theme/img/undraw_rocket.svg'%}" alt="...">
             <p class="text-center mb-2"><strong>Stocksimulator Pro</strong> contiene muchas funcionalidades nuevas!</p>
-            <a class="btn btn-success btn-sm" href="/pro/">Hazte Pro!</a>
+            <a class="btn btn-success btn-sm" href="#">Hazte Pro!</a>
         </div>
 
     </ul>
@@ -188,93 +183,20 @@
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
-            <div class="container-fluid">
-                <h1 class="h2 mb-0 text-gray-800">{{ companyName }} - {{TransactionType}} </h1>
-                <p class="mt-2 h5">{{description}}</p>
+            <div class=" mt-5 pt-5 ">
+                <img class="float-right pr-4 h-25 w-25" src="{% static 'theme/img/undraw_rocket.svg'%}" alt="...">
+                <h1 class="d-flex justify-content-center text-primary ml-5 "><strong>¡Proximamente!</strong></h1>
+                <div class="d-flex justify-content-center ">
+                    <p class="w-50  ml-5 mr-0 pl-5 mt-5">
+                        Muchas gracias por estar interesado en el proyecto de  <strong class="text-primary">Stocksimulator</strong> 
+                        por el momento no puedes hacerte pro, aun asi puedes disfrutar de nuestra herramienta sin ninguna restricción.
+                    </p>
+                </div>
+                <br>
+                <br>
+                <div class="d-flex justify-content-center ml-5">
+                    <strong class="text-primary">¡Gracias por tu apoyo!</strong>
 
-                <div class="row">
-                    <div class=" col-lg-4 ">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Transacciones Realizadas</h6>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body ">
-                                <div class="row">
-                                    <table class="ml-auto mr-1">
-                                        {% for day in Days %}
-                                        <tr class=" ">
-                                            <td>
-                                                <p class=" mb-1 text-center h5">
-                                                    <strong>{{ day }}</strong>
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-
-                                    </table>
-
-                                    <table class="ml-auto mr-auto">
-                                        {% for transaccion in Transacciones %}
-                                        <tr class=" ">
-                                            <td>
-                                                {% if clase%}
-                                                <p class=" mb-1 text-center h5 text-success">
-                                                    <strong>{{ transaccion }}</strong>
-                                                </p>
-                                                {% else %}
-                                                <p class=" mb-1 text-center h5 text-danger">
-                                                    <strong>{{ transaccion }}</strong>
-                                                </p>
-                                                {% endif %}
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="h-75">
-                        <div class="card shadow  h-25">
-                            <div class="card-header py-3 mb-2">
-                                <h6 class="m-0 font-weight-bold text-primary">{{TransactionType}}</h6>
-                            </div>
-                            <div class="card-body pt-2 pb-0 ">
-                                <p class="">Al finalizar el dia este fue el valor que dejaron las transacciones
-                                    realizadas:
-                                    {% if clase%}
-                                        <strong class=" text-success">{{boughtStocks}}</strong> 
-                                    {% else %}
-                                        <strong class=" text-danger">{{boughtStocks}}</strong> 
-                                    {% endif %}
-                                </p> a fecha de cierre del <strong>{{ClosingDay}}</strong>
-                            </div>
-                        </div>
-                        <div class="card shadow mb-4 h-auto">
-                            <!-- Card Header - Dropdown -->
-                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Fuentes de Ingresos</h6>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="chart-pie  pb-2">
-                                    <canvas id="myPieChart"></canvas>
-                                </div>
-                                <div class="mt-4 text-center small">
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-danger"></i> Acciones Compradas
-                                    </span>
-                                    <span class="mr-2">
-                                        <i class="fas fa-circle text-success"></i> Acciones Vendidas
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
