@@ -26,6 +26,12 @@ soldStocks=0
 DiaDeCierre=''
 CSVFILE='csv-files/ECOPETROL.csv'
 
+def welcome(request):
+        return render(request, 'welcome.html',{
+        
+    })
+
+
 def home(request):
     
     # Se indica que las variables sean globales
@@ -62,6 +68,8 @@ def home(request):
     amountList=[]
     quantityList=[]
     priceList=[]
+    contNegatives=[]
+    contPositives=[]
     #importa el csv
     #print("importando csv")
     #veifica si request.GET es valido
@@ -80,6 +88,8 @@ def home(request):
     with open(csv_file) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=';')
         cont=0
+        contNegatives=0
+        contPositives=0
         for row in csv_reader:
             if cont!=0 :
                 companyName = row[0]
@@ -110,6 +120,13 @@ def home(request):
                     precio=precio.replace(',', '.')
                     precio=float(precio)
                     priceList.append(precio)
+                if row[9]!=",00":
+                    variance=row[9].replace('.', '')
+                    variance=variance.replace(',', '.')
+                    if float(variance) <= 0:
+                        contNegatives=contNegatives+1
+                    else:
+                        contPositives=contPositives+1
             cont=cont+1
     transaction_cost = 0.005
     numberOfMonths=len(daysList)
@@ -120,12 +137,12 @@ def home(request):
     
     
     for i in range(numberOfMonths):
-        boughtStocks, portfolio, investment  = actions.buy(portfolio, amountList[i], investment, transaction_cost, quantityList[i]/2, priceList[i])
+        boughtStocks, portfolio, investment  = actions.buy(portfolio, amountList[i], investment, transaction_cost, quantityList[i]*((contPositives*100)/cont), priceList[i])
         boughtActions.append(boughtStocks)
 
     #print("boughtStocks= ",boughtStocks," portfolio= ", portfolio ," investment= ", investment)
     for i in range(numberOfMonths):
-        soldStocks, portfolio, investment = actions.sell(portfolio, amountList[i], investment, transaction_cost, quantityList[i]/2, priceList[i])
+        soldStocks, portfolio, investment = actions.sell(portfolio, amountList[i], investment, transaction_cost, quantityList[i]*((contNegatives*100)/cont), priceList[i])
         soldActions.append(soldStocks)
     netBoughtSoldValue = actions.netBoughtSoldValue(boughtStocks, soldStocks)
     predictedAmount = amountList[len(amountList)-1] + netBoughtSoldValue

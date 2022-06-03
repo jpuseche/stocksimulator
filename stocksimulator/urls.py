@@ -22,7 +22,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='home'),
+    path('', views.welcome, name='welcome'),
+    path('home/', views.home, name='home'),
     path('import-csv/', views.import_csv, name='import_csv'),
     path('login/', views.login, name='login'),
     path('report/', views.reporte, name='reporte'),
