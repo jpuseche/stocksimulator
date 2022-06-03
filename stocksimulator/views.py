@@ -6,7 +6,6 @@ from django.shortcuts import render
 from . import actions
 import json 
 import csv
-import pandas as pd
 import string
 from stocksimulator.models import StockReport
 from .forms import CsvForm
@@ -84,7 +83,6 @@ def home(request):
         print("no se pudo importar el csv")
         csv_file=CSVFILE
     
-    #print(csv_file)
     with open(csv_file) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=';')
         cont=0
@@ -139,8 +137,6 @@ def home(request):
     for i in range(numberOfMonths):
         boughtStocks, portfolio, investment  = actions.buy(portfolio, amountList[i], investment, transaction_cost, quantityList[i]*((contPositives*100)/cont), priceList[i])
         boughtActions.append(boughtStocks)
-
-    #print("boughtStocks= ",boughtStocks," portfolio= ", portfolio ," investment= ", investment)
     for i in range(numberOfMonths):
         soldStocks, portfolio, investment = actions.sell(portfolio, amountList[i], investment, transaction_cost, quantityList[i]*((contNegatives*100)/cont), priceList[i])
         soldActions.append(soldStocks)
@@ -174,6 +170,7 @@ def reporte(request):
     Descripcion="Estas fueron las acciones de la empresa "+companyName+" que fueron compradas al pasar del dia"
     stocksBuyAndSell = [boughtStocks, soldStocks]
     TipoDeTransaccion="Acciones Compradas"
+    clase=False
     return render(request, 'reporte.html', {
         "companyName": companyName,
         "Transacciones": AcionesVendidas,
@@ -182,7 +179,8 @@ def reporte(request):
         "stocksBuyAndSell": json.dumps(stocksBuyAndSell),
         "TransactionType": TipoDeTransaccion,
         "Days":daysList,
-        "ClosingDay":DiaDeCierre
+        "ClosingDay":DiaDeCierre,
+        "clase":clase
         })
 def soldReport(request):
     AcionesVendidas=[]
@@ -191,6 +189,7 @@ def soldReport(request):
         AcionesVendidas.append("${:,.2f}". format(soldActions[i]))
     stocksBuyAndSell = [boughtStocks, soldStocks]
     TipoDeTransaccion="Acciones Vendidas"
+    clase=True
     return render(request, 'reporte.html', {
         "companyName": companyName,
         "Transacciones": AcionesVendidas,
@@ -199,7 +198,8 @@ def soldReport(request):
         "stocksBuyAndSell": json.dumps(stocksBuyAndSell),
         "TransactionType": TipoDeTransaccion,
         "Days":daysList,
-        "ClosingDay":DiaDeCierre
+        "ClosingDay":DiaDeCierre,
+        "clase":clase
         })
 
 def csv_files(request):
@@ -229,5 +229,9 @@ def register(request):
 
 def forgot_password(request):
     return render(request, 'forgot-password.html', {
+
+        })
+def pro(request):
+    return render(request, 'pro.html', {
 
         })

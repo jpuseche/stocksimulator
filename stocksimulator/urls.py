@@ -31,5 +31,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('forgot-password/', views.forgot_password, name='forgot_password'),
     path('learn-more/', views.learn_more, name='aprende'),
-    path('csv-files/', views.csv_files, name='csv_files')
+    path('csv-files/', views.csv_files, name='csv_files'),
+    path('pro/', views.pro, name='pro'),
 ] +static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
