@@ -17,7 +17,7 @@
                 </button>
 
                 <!-- Logo -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center text-white" href="/">
+                <a class="sidebar-brand d-flex align-items-center justify-content-center text-white" href="/{% if csvFile != None  %}?CSVFile={{ csvFile }}{% endif %}">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <i class="fas fa-laugh-wink"></i>
                     </div>
@@ -145,7 +145,7 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-            <a href="/home" class="btn btn btn-secondary px-4">Atrás</a>
+            <a href="/home{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}" class="btn btn btn-secondary px-4">Atrás</a>
                 <div id="importStocks" class="container">
                     <div class="card p-4 file-card d-none">
                         <div class="d-flex justify-content-between">
@@ -160,7 +160,7 @@
                                     <p class="filesize">tamaño</p>
                                 </div>
                             </div>
-                            <a class="btn btn-secondary btn-lg cancel-import-users" href="/home">Cancelar</a>
+                            <a class="btn btn-secondary btn-lg cancel-import-users" href="/home{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">Cancelar</a>
                         </div>
                     </div>
                     <div class="input-card gray-background-color">

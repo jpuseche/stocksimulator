@@ -73,7 +73,7 @@
 
         // Area Chart Example
         var ctx = document.getElementById("myAreaChart");
-        var amountList = {{ amountList | safe }};
+        var amountList = {{ lineGraphic | safe }};
         var monthsList = {{ monthsList | safe }};
         var myLineChart = new Chart(ctx, {
             type: 'line',
@@ -176,11 +176,11 @@
             var myPieChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: ["Acciones Compradas", "Acciones Vendidas", "Social"],
+                    labels: ["Acciones Vendidas", "Acciones Compradas", "Social"],
                     datasets: [{
                         data: stocksBuyAndSell,
-                        backgroundColor: ['#CB2A2D', '#2DCD76'],
-                        hoverBackgroundColor: ['#A70000', '#17a673', '#2c9faf'],
+                        backgroundColor: ['#2DCD76', '#CB2A2D'],
+                        hoverBackgroundColor: ['#17a673', '#A70000', '#2c9faf'],
                         hoverBorderColor: "rgba(234, 236, 244, 1)",
                     }],
                 },

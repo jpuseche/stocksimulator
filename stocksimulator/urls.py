@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.welcome, name='welcome'),
     path('home/', views.home, name='home'),
+    path('stock-price/', views.stock_price, name='stock_price'),
     path('import-csv/', views.import_csv, name='import_csv'),
     path('login/', views.login, name='login'),
     path('report/', views.reporte, name='reporte'),

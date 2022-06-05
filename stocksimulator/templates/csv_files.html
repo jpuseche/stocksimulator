@@ -10,7 +10,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/{% if csvFile != None  %}?CSVFile={{ csvFile }}{% endif %}">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -22,17 +22,32 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="/home">
+            <a class="nav-link" href="/home{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Inicio</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="/learn-more">
+            <a class="nav-link" href="/report{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
+                - <i class="fas fa-money-bill"></i>
+                <span>Reporte Compra</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/sold{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
+                + <i class="fas fa-money-bill"></i>
+                <span>Reporte Venta</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/stock-price{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
+                <i class="fas fa-money-bill"></i>
+                <span>Precio de Acción</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/learn-more{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
                 <i class="fas fa-lightbulb"></i>
                 <span>¡Aprende mas!</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="/csv-files">
+            <a class="nav-link" href="/csv-files{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
                 <i class="fas fa-solid fa-box"></i>
                 <span>Archivos CSV</span></a>
         </li>

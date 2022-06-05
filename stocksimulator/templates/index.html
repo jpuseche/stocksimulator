@@ -11,7 +11,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/{% if csvFile != None  %}?CSVFile={{ csvFile }}{% endif %}">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -23,17 +23,32 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="/home">
+            <a class="nav-link" href="/home{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Inicio</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="/learn-more">
+            <a class="nav-link" href="/report{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
+                - <i class="fas fa-money-bill"></i>
+                <span>Reporte Compra</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/sold{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
+                + <i class="fas fa-money-bill"></i>
+                <span>Reporte Venta</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/stock-price{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
+                <i class="fas fa-money-bill"></i>
+                <span>Precio de Acción</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/learn-more{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
                 <i class="fas fa-lightbulb"></i>
                 <span>¡Aprende mas!</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="/csv-files">
+            <a class="nav-link" href="/csv-files{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
                 <i class="fas fa-solid fa-box"></i>
                 <span>Archivos CSV</span></a>
         </li>
@@ -201,9 +216,13 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">{{ companyName }}</h1>
-                        <a href="/import-csv" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Importar un archivo CSV</a>
+                        <h1 class="h3 mb-0 text-gray-800 d-flex justify-content-center"><p class="font-weight-bold mb-0 pb-0 mr-2">Valorización de Empresa: </p>{{ companyName }}</h1>
+                        <div>
+                            <a href="/stock-price{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}" class="d-none d-sm-inline-block btn btn-sm btn-info shadow-sm">
+                                Comportaiento de Acciónes</a>
+                            <a href="/import-csv{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                    class="fas fa-download fa-sm text-white-50 mr-2"></i>Importar un archivo CSV</a>
+                        </div>
                     </div>
 
                     <!-- Content Row -->
@@ -260,7 +279,7 @@
                                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1 pb-0">
                                                 Acciones Compradas</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ boughtStocks }}</div>
-                                            <a href="/report/" class="">
+                                            <a href="/report{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}" class="">
                                                 <p class="h6  text-right ml-5 mt-3 mb-1">Ver mas</p>
                                             </a>
                                         </div>
@@ -281,7 +300,7 @@
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Acciones Vendidas</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ soldStocks }}</div>
-                                            <a href="/sold/" class="">
+                                            <a href="/sold{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}" class="">
                                                 <p class="h6  text-right ml-5 mt-3 mb-1">Ver mas</p>
                                             </a>
                                         </div>
@@ -341,9 +360,12 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Ganancias</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Comportamiento del Volumen en el Tiempo</h6>
                                 </div>
                                 <!-- Card Body -->
+                                <div class="card-body">
+                                    <p class="ml-3">Se observa el comportamiento del volumén de {{ companyName }}</p>
+                                </div>
                                 <div class="card-body">
                                     <div class="chart-area">
                                         <canvas id="myAreaChart"></canvas>
@@ -358,10 +380,15 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Fuentes de Ingresos</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Valor Compra y Venta de Acciónes</h6>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body">
+                                <div class="card-body mb-3">
+                                    {% if moreSold %}
+                                        <p class="ml-3">Se puede considerar comprar acciones para {{ companyName }}, ya que la empresa a vendido mas acciones para esta epoca.</p>
+                                    {% else %}
+                                        <p class="ml-3">Es mejor abstenerse de comprar acciones para {{ companyName }}, ya que la empresa a comprado mas acciones para esta epoca.</p>
+                                    {% endif %}
                                     <div class="chart-pie pt-4 pb-2">
                                         <canvas id="myPieChart"></canvas>
                                     </div>

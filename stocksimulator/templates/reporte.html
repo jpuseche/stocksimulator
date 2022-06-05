@@ -11,7 +11,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/{% if csvFile != None  %}?CSVFile={{ csvFile }}{% endif %}">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
@@ -23,17 +23,32 @@
 
         <!-- Nav Item - Home -->
         <li class="nav-item active">
-            <a class="nav-link" href="/home">
+            <a class="nav-link" href="/home{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Inicio</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="/learn-more">
+            <a class="nav-link" href="/report{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
+                - <i class="fas fa-money-bill"></i>
+                <span>Reporte Compra</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/sold{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
+                + <i class="fas fa-money-bill"></i>
+                <span>Reporte Venta</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/stock-price{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
+                <i class="fas fa-money-bill"></i>
+                <span>Precio de Acción</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/learn-more{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
                 <i class="fas fa-lightbulb"></i>
                 <span>¡Aprende mas!</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="/csv-files">
+            <a class="nav-link" href="/csv-files{% if csvFile != None  %}/?CSVFile={{ csvFile }}{% endif %}">
                 <i class="fas fa-solid fa-box"></i>
                 <span>Archivos CSV</span></a>
         </li>
@@ -193,7 +208,7 @@
                 <p class="mt-2 h5">{{description}}</p>
 
                 <div class="row">
-                    <div class=" col-lg-4 ">
+                    <div class=" col-lg-6 ">
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -203,6 +218,13 @@
                             <div class="card-body ">
                                 <div class="row">
                                     <table class="ml-auto mr-1">
+                                        <tr class=" ">
+                                            <td>
+                                                <p class=" mb-1 text-center h5">
+                                                    <strong>Día Realizado</strong>
+                                                </p>
+                                            </td>
+                                        </tr>
                                         {% for day in Days %}
                                         <tr class=" ">
                                             <td>
@@ -216,6 +238,13 @@
                                     </table>
 
                                     <table class="ml-auto mr-auto">
+                                        <tr class=" ">
+                                            <td>
+                                                <p class=" mb-1 text-center h5">
+                                                    <strong>Transacción Total</strong>
+                                                </p>
+                                            </td>
+                                        </tr>
                                         {% for transaccion in Transacciones %}
                                         <tr class=" ">
                                             <td>
@@ -228,6 +257,26 @@
                                                     <strong>{{ transaccion }}</strong>
                                                 </p>
                                                 {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </table>
+
+                                    <table class="ml-auto mr-auto">
+                                        <tr class=" ">
+                                            <td>
+                                                <p class=" mb-1 text-center h5">
+                                                    <strong>Precio medio de Acción</strong>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        {% for price in prices %}
+                                        <tr class=" ">
+                                            <td>
+                                                <p class=" mb-1 text-center h5">
+                                                    <strong>{{ price }}</strong>
+                                                </p>
                                             </td>
                                         </tr>
                                         {% endfor %}
@@ -247,9 +296,9 @@
                                 <p class="">Al finalizar el dia este fue el valor que dejaron las transacciones
                                     realizadas:
                                     {% if clase%}
-                                        <strong class=" text-success">{{boughtStocks}}</strong> 
+                                        <strong class=" text-success">{{stocks}}</strong> 
                                     {% else %}
-                                        <strong class=" text-danger">{{boughtStocks}}</strong> 
+                                        <strong class=" text-danger">{{stocks}}</strong> 
                                     {% endif %}
                                 </p> a fecha de cierre del <strong>{{ClosingDay}}</strong>
                             </div>
@@ -257,7 +306,7 @@
                         <div class="card shadow mb-4 h-auto">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Fuentes de Ingresos</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Valor Compra y Venta de Acciónes</h6>
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
